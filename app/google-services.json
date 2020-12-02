@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "525084178235",
+    "firebase_url": "https://alpha-ori.firebaseio.com",
+    "project_id": "alpha-ori",
+    "storage_bucket": "alpha-ori.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525084178235:android:9794c7ba5ad0c2edae291e",
+        "android_client_info": {
+          "package_name": "com.example.alpha_ori"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525084178235-c02snqkkfg5ic7stp63r5upa2otjqa40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUjUtnJB6P98Ur7iE0dbSktMGjya06oV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525084178235-c02snqkkfg5ic7stp63r5upa2otjqa40.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
