@@ -3,22 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Storage">
+    android:gravity="center"
+    android:layout_height="match_parent"
+    tools:context=".NFC">
 
-    <ImageView
-        android:id="@+id/profileimage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-
-    <Button
-        android:id="@+id/upload"
+    <TextView
+        android:id="@+id/infoscan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="upload"
-        android:text="upload image" />
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="scan"
+        android:text="scan card" />
 </LinearLayout>

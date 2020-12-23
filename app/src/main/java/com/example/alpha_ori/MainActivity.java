@@ -3,7 +3,11 @@ package com.example.alpha_ori;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Telephony;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     Button Button2;
     Button Button1;
     private FirebaseAuth mAuth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,4 +123,45 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser) {
 
-    } }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        return true;
+    }
+
+    /**
+     * switch activity
+     * @param menu
+     * @return
+     */
+    public boolean onOptionsItemSelected(MenuItem menu) {
+        String st = menu.getTitle().toString();
+
+        if ((st.equals("storage"))) {
+            Intent si = new Intent(this, Storage.class);
+            startActivity(si);
+        }
+        if ((st.equals("authentication"))) {
+            Intent si = new Intent(this, MainActivity.class);
+            startActivity(si);
+        }
+        if ((st.equals("NFC"))) {
+            Intent si = new Intent(this, NFC.class);
+            startActivity(si);
+        }
+
+
+
+        return true;
+    }
+
+
+
+
+}
+
+
+
+
