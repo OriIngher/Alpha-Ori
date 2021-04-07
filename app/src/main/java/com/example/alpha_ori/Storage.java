@@ -46,24 +46,7 @@ public class Storage extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == pickimage && resultCode == RESULT_OK) {
-            {
-                imageUri = data.getData();
-                try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-                    profileimage.setImageBitmap(bitmap);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        }
-    }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
 
@@ -96,5 +79,8 @@ public class Storage extends AppCompatActivity {
         return true;
     }
 
+    public void upload(View view) {
+
+    }
 }
 
