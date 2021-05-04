@@ -1,11 +1,9 @@
 package com.example.alpha_ori;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Telephony;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,18 +11,29 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+
+import static com.example.alpha_ori.FBref.refAuth;
+import static com.example.alpha_ori.FBref.refUsers;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText Email1;
     EditText Password1;
+    EditText Name1;
     Button Button2;
     Button Button1;
+    String name, email , password, age , weight , height , workout;
+    Trainee traineedb;
+    String uid;
     private FirebaseAuth mAuth;
 
 
@@ -36,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         Password1 = findViewById(R.id.Password1);
         Email1 = findViewById(R.id.Email1);
+        Name1 = findViewById(R.id.Name1);
         Button Button1 = findViewById(R.id.button1);
         Button Button2 = findViewById(R.id.button2);
         mAuth = FirebaseAuth.getInstance();
@@ -115,6 +125,37 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         // ...
+                    }
+                });
+        name=Name1.getText().toString();
+        email= Email1.getText().toString();
+        password=Password1.getText().toString();
+
+
+        final ProgressDialog pd= ProgressDialog.show(this,"Register","Registering...",true);
+        refAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        pd.dismiss();
+                        if (task.isSuccessful()) {
+                            Log.d("MainActivity", "createUserWithEmail:success");
+                            FirebaseUser user = refAuth.getCurrentUser();
+                            uid = user.getUid();
+                            traineedb=new Trainee(name,email,uid);
+                            refUsers.child(uid).setValue(traineedb);
+                            Toast.makeText(MainActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
+                            Intent si = new Intent(MainActivity.this,Login.class);
+                            si.putExtra("newuser",true);
+                            startActivity(si);
+                        } else {
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException)
+                                Toast.makeText(MainActivity.this, "User with e-mail already exist!", Toast.LENGTH_SHORT).show();
+                            else {
+                                Log.w("MainActivity", "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(MainActivity.this, "User create failed.",Toast.LENGTH_LONG).show();
+                            }
+                        }
                     }
                 });
 

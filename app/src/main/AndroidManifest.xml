@@ -2,10 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.alpha_ori">
 
+    <uses-sdk android:minSdkVersion="10" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.NFC" />
-    <uses-sdk android:minSdkVersion="10"/>
-    <uses-feature android:name="android.hardware.nfc" android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -14,50 +18,60 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AlphaOri">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Login"></activity>
+        <activity android:name=".sign_in" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".Storage" />
         <activity android:name=".NFC">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/plain"/>
+
+                <data android:mimeType="text/plain" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/plain" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="https"
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
                     android:host="developer.android.com"
-                    android:pathPrefix="/index.html" />
+                    android:pathPrefix="/index.html"
+                    android:scheme="https" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.nfc.action.TAG_DISCOVERED"/>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="https"
-                    android:host="developer.android.com"
-                    android:pathPrefix="/index.html" />
-            </intent-filter>
 
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="developer.android.com"
+                    android:pathPrefix="/index.html"
+                    android:scheme="https" />
+            </intent-filter>
         </activity>
 
+        <intent-filter>
+            <action android:name="android.nfc.action.TECH_DISCOVERED" />
+        </intent-filter>
 
-            <intent-filter>
-                <action android:name="android.nfc.action.TECH_DISCOVERED"/>
-            </intent-filter>
-
-            <meta-data android:name="android.nfc.action.TECH_DISCOVERED"
-                android:resource="@xml/nfc_tech_filter" />
-
-
+        <meta-data
+            android:name="android.nfc.action.TECH_DISCOVERED"
+            android:resource="@xml/nfc_tech_filter" />
     </application>
 
 </manifest>
